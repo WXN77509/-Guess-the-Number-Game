@@ -40,24 +40,24 @@ function Button({
       setNumberAtGuess(lib.gen_random(1, lib.getSelectedValue(levelSelect)));
     }
 
-    if (trials <= 0) {
-      setisWinOrLoseOrNoTrials("No trials");
+    const value = Number(input);
+    if (isNaN(value)) {
+      return;
     }
 
-    const value = Number(input);
-    const newArray = [...numbers];
-
-    newArray.push(value);
-    setNumbers(newArray);
+    const newNumbers = [...numbers, value];
+    setTrials(trials - 1);
 
     if (value === numberAtGuess) {
       setisWinOrLoseOrNoTrials("Win");
+    } else if (trials === 1) {
+      setisWinOrLoseOrNoTrials("No trials");
     } else {
       setisWinOrLoseOrNoTrials("Lose");
-      setTrials(trials - 1);
     }
-    setInput("");
+    setNumbers(newNumbers);
     setRemoveDiv(false);
+    setInput("");
   };
 
   return (

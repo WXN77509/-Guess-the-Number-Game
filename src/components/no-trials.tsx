@@ -25,7 +25,7 @@ function NoTrials({
           {numbers.length > 1 ? "Essais précédents" : "Essai précédent"}
         </p>
         <ul className="list-none w-full flex flex-row flex-wrap gap-2">
-          {numbers.map((value) => {
+          {numbers.map((value, index) => {
             let style: string = "text-center text-[1.1rem] rounded-lg p-3 ";
             if (value > numberAtGuess) {
               style += "bg-orange-100 text-orange-800";
@@ -34,7 +34,7 @@ function NoTrials({
             }
 
             return (
-              <li key={value} className={style}>
+              <li key={index} className={style}>
                 {value}
               </li>
             );
